@@ -5,21 +5,27 @@ import java.util.*;
 public class Train extends Thread{
 	public static String DIRECTION_LEFT = 0;
 	public static String DIRECTION_RIGHT = 1;
-
+	public ArrayList<Passenger> passengers;
 	public int max_seat_count;
 	private int occupied_seats;
 
 	private int direction;
 
-
-
+	
 	public static Station[] stations;
 
-	
+	public void go_left(){
+		
+	}
+
+	public void go_right(){
+		
+	}
 
 	public Train(int seat_count, int direction){
-		
-
+		passengers = new ArrayList<>();
+		max_seat_count = seat_count;
+		this.direction = direction;
 
 	}
 
