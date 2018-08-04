@@ -5,7 +5,7 @@ public class Passenger extends Thread{
 	public int destination_station;
 	public int pass_id;
 	public Station station;
-
+	public static int actual_passenger_count = 0;
 	private static int passenger_count = 0;
 
 	boolean boarded;
@@ -16,6 +16,7 @@ public class Passenger extends Thread{
 		station = s;
 		s.addPassenger();
 		passenger_count++;
+		actual_passenger_count++;
 		boarded = false;
 	}
 
@@ -38,18 +39,35 @@ public class Passenger extends Thread{
 			while(!boarded){
 				//check if theres a train in the station
 				if(!s.isOccupied()){
+					boarded = false;
 					System.out.println("Passenger " + pass_id + " waiting for train...");
 					try{
-						s.train_boardable.wait();
+						while(!s.isOccupied()){
+							s.train_boardable.wait();
+						}
 					}catch(Exception e){
 						e.printStackTrace();
 					}
 				}
-
 				//train exists, check if full
-				if(s.train.board(this)){
-					boarded = true;
+				try{
+					if(s.train.board(this) && s.train!=null){
+						boarded = true;
+					}else{
+						try{
+							while(s.isOccupied()){
+								s.train_boardable.wait();
+							}
+						}catch(Exception e){
+							e.printStackTrace();
+						}
+						boarded = false;
+					}
+				}catch(Exception e){
+					boarded = false;
+					e.printStackTrace();
 				}
+				
 			}
 			return s.train;
 		}
@@ -64,6 +82,7 @@ public class Passenger extends Thread{
 	public void run(){
 		Train t = station_wait_for_train(station);
 		station.removePassenger();
+		actual_passenger_count--;
 		//System.out.println("Passenger " + pass_id + " has boarded.");
 
 		train_check_for_destination(t);

@@ -27,9 +27,17 @@ public class Driver{
 				int start = sc.nextInt();
 				System.out.print("Enter destination station (0-7): ");
 				int end = sc.nextInt();
+				System.out.print("How many passengers: ");
+				int cnt = sc.nextInt();
 
-				Passenger p = new Passenger(end,Train.stations[start]);
-				p.start();
+				while(cnt-->0){
+					new Passenger(end,Train.stations[start]).start();
+				}
+			}
+			try{
+				Thread.sleep(100);
+			}catch(Exception e){
+				e.printStackTrace();
 			}
 			System.out.println("1-Add Train\n2-Add Passenger\n3-Exit");
 		}

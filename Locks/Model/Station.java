@@ -10,6 +10,7 @@ public class Station{
 	public Train train;
 	public Object train_lock;
 	public Object train_boardable;
+	
 	public synchronized void addPassenger(){
 		passengers++;
 	}
@@ -31,22 +32,23 @@ public class Station{
 		return (train!=null);
 	}
 
-	public synchronized boolean station_load_train(Train t){
-		if(train == null){
-			train = t;
-			train_boardable.notifyAll();
-			return true;
+	public boolean station_load_train(Train t){
+		
+		synchronized(train_boardable){
+			if(train == null){
+				train = t;
+				train_boardable.notifyAll();
+				return true;
+			}
+			return false;
 		}
-		return false;
 	}
 
-	public synchronized void station_leave_train(){
-		train = null;
-		train_lock.notifyAll();
+	public void station_leave_train(){
+		synchronized(train_lock){
+			System.out.println("Train " + train.id + " has left station " + train.current_station);
+			train = null;
+			train_lock.notifyAll();
+		}
 	}
-
-	public void station_on_board(){
-		//TODO this function?
-	}
-
 }
