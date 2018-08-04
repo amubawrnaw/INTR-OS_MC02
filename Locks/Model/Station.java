@@ -3,40 +3,46 @@ import java.util.*;
 
 public class Station{
 	
-	ArrayList<Passenger> passengers;
+	public int passengers; 
 
 	//trains[0] = train going left
 	//trains[1] = train going right
-	public Train[] trains;
-
-	public synchronized void addPassenger(Passenger p){
-		passengers.add(p);
-		//TODO check for train
+	public Train train;
+	public Object train_lock;
+	public Object train_boardable;
+	public synchronized void addPassenger(){
+		passengers++;
 	}
-
+	public synchronized void removePassenger(){
+		passengers--;
+	}
 	public Station(){
-		trains = new Train[2];
-		trains[Train.DIRECTION_LEFT] = null;
-		trains[Train.DIRECTION_RIGHT] = null;
+		train = null;
+		passengers = 0;
+		train_lock = new Object();
+		train_boardable = new Object();
 	}
 
-	public synchronized boolean has_train_going_left(){
-		return (trains[Train.DIRECTION_LEFT]!=null);
+	public boolean hasPassengers(){
+		return (passengers>0);
 	}
 
-	public synchronized boolean has_train_going_right(){
-		return (trains[Train.DIRECTION_RIGHT]!=null);
+	public boolean isOccupied(){
+		return (train!=null);
 	}
 
-	public synchronized void station_load_train(Train t, int count){
-		//TODO this function
-		trains[t.direction] = t;
-
-
+	public synchronized boolean station_load_train(Train t){
+		if(train == null){
+			train = t;
+			train_boardable.notifyAll();
+			return true;
+		}
+		return false;
 	}
 
-	public void station_wait_for_train(){
-		//TODO this function
+	public synchronized void station_leave_train(){
+		train = null;
+		train_lock.notifyAll();
 	}
 
 	public void station_on_board(){
