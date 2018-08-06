@@ -2,7 +2,6 @@ import java.util.*;
 import Model.*;
 public class Driver{
 	public static void main(String[] args){
-		int t_count = 0;
 		Train[] trains = new Train[16];
 		Train.initStations();
 
@@ -12,15 +11,17 @@ public class Driver{
 		while((input = sc.nextInt()) != 3){
 			//TRAIN
 			if(input == 1){
-				if(t_count>15){
-					System.out.println("Too many trains");
-				}else{
-					System.out.print("Train Capacity: ");
-					int cap = sc.nextInt();
-
-					Train t = new Train(cap,1, t_count);
-					t_count++;
-					t.start();
+				System.out.print("Train Capacity: ");
+				int cap = sc.nextInt();
+				System.out.print("How many trains: ");
+				int tcount = sc.nextInt();
+				while(tcount-->0){
+					new Train(cap,1).start();
+					try{
+						Thread.sleep(100);
+					}catch(Exception e){
+						e.printStackTrace();
+					}
 				}
 			}else{//PASSENGER
 				System.out.print("Enter start station (0-7): ");
