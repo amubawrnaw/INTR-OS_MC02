@@ -46,12 +46,14 @@ public class Train extends Thread{
 	@Override
 	public void run(){
 		if(valid){
+			long start = System.currentTimeMillis();
 			while(running){
 				try{
-					sleep(300);
+					//sleep(300);
 				}catch(Exception e){
 					e.printStackTrace();
 				}
+				
 				boolean has_entered = false;
 				while(stations[current_station].isOccupied()){
 					synchronized (stations[current_station].train_lock){
@@ -78,6 +80,12 @@ public class Train extends Thread{
 					passenger_lock.notifyAll();
 				}
 				
+				try{
+					sleep(1000);
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+
 				System.out.println("Train " + id + " is now on station " + current_station + ", passengers: " + occupied_seats);
 				//check if train is full
 				if(!isFull()){
@@ -95,6 +103,7 @@ public class Train extends Thread{
 				if(Passenger.actual_passenger_count == 0 && current_station == 7){
 					running = false;
 					System.out.println("Train " + id + " has left the Simulator");
+					
 					break;
 				}
 				current_station = (current_station+1)%8;
@@ -110,6 +119,9 @@ public class Train extends Thread{
 			}
 			//remove train
 			train_count--;
+			long end = System.currentTimeMillis();
+					System.out.println(end-start + " milliseconds");
+			
 		}
 	}
 

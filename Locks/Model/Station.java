@@ -46,9 +46,9 @@ public class Station{
 
 	public void station_leave_train(){
 		synchronized(train_lock){
-			System.out.println("Train " + train.id + " has left station " + train.current_station);
+			System.out.println("Train " + train.id + " has left station " + train.current_station + " passengers: " + train.occupied_seats);
 			train = null;
 			train_lock.notifyAll();
 		}
 	}
-} 	
+} 
