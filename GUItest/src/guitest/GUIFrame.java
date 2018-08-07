@@ -212,7 +212,6 @@ public class GUIFrame extends javax.swing.JFrame {
     private int selected_station_for_passenger;
     private void deployTrainButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deployTrainButtonActionPerformed
        int train_capacity = (Integer) trainCapacitySpinner.getValue();
-       System.out.println(train_capacity);
        new Train(train_capacity, 1).start();
         
     }//GEN-LAST:event_deployTrainButtonActionPerformed
@@ -256,12 +255,20 @@ public class GUIFrame extends javax.swing.JFrame {
     private void AddPassengersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddPassengersActionPerformed
         //creates a random int from 0-7
         int end = random_passenger_destination.nextInt(8);
-        //loop if the random generated number is equal to the start station
-        while(end!=selected_station_for_passenger){
-            //creates a random int from 0-7
-            end = random_passenger_destination.nextInt(8);
+        int cnt = (Integer )PassengerSpinner.getValue();
+        if(cnt>0){
+            for(int i = 0 ; i < cnt ; i++){
+                while(end!=selected_station_for_passenger){
+                    //creates a random int from 0-7
+                    end = random_passenger_destination.nextInt(8);
+                }
+                new Passenger(end, Train.stations[selected_station_for_passenger]).start();
+            }
+            
+        }else{
+            System.out.println("Invalid Passenger Count!");
         }
-        new Passenger(end, Train.stations[selected_station_for_passenger]).start();
+        
     }//GEN-LAST:event_AddPassengersActionPerformed
 
     /**

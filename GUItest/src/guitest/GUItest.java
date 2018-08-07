@@ -26,10 +26,10 @@ public class GUItest {
         GUIFrame theGUI = new GUIFrame();
         Scanner reader = new Scanner(System.in);
 
-theGUI.setSize(1325, 585);
-theGUI.setDefaultCloseOperation(GUIFrame.EXIT_ON_CLOSE);
-theGUI.setTitle("GUI Window");
-theGUI.setVisible(true);
+        theGUI.setSize(1325, 585);
+        theGUI.setDefaultCloseOperation(GUIFrame.EXIT_ON_CLOSE);
+        theGUI.setTitle("GUI Window");
+        theGUI.setVisible(true);
         
     }
     
