@@ -54,7 +54,7 @@
           <Font name="BigNoodleTitling" size="36" style="0"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/guitest/deploydefault.png"/>
+          <Image iconType="3" name="/guitest/GUI Images/deploydefault.png"/>
         </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="null"/>
@@ -98,7 +98,7 @@
     <Component class="javax.swing.JLabel" name="Station">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/guitest/capacity.png"/>
+          <Image iconType="3" name="/guitest/GUI Images/capacity.png"/>
         </Property>
       </Properties>
       <Constraints>
@@ -110,12 +110,12 @@
     <Component class="javax.swing.JLabel" name="TrainCapacity">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/guitest/station.png"/>
+          <Image iconType="3" name="/guitest/GUI Images/station.png"/>
         </Property>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="60" y="426" width="210" height="-1"/>
+          <AbsoluteConstraints x="60" y="426" width="180" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -132,7 +132,7 @@
     <Component class="javax.swing.JToggleButton" name="passenger_station_1">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/guitest/Num1Stationdef.png"/>
+          <Image iconType="3" name="/guitest/GUI Images/Num1Stationdef.png"/>
         </Property>
         <Property name="borderPainted" type="boolean" value="false"/>
         <Property name="contentAreaFilled" type="boolean" value="false"/>
@@ -150,7 +150,7 @@
     <Component class="javax.swing.JToggleButton" name="passenger_station_2">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/guitest/Num2Stationdef.png"/>
+          <Image iconType="3" name="/guitest/GUI Images/Num2Stationdef.png"/>
         </Property>
         <Property name="borderPainted" type="boolean" value="false"/>
         <Property name="contentAreaFilled" type="boolean" value="false"/>
@@ -168,7 +168,7 @@
     <Component class="javax.swing.JToggleButton" name="passenger_station_3">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/guitest/Num3Stationdef.png"/>
+          <Image iconType="3" name="/guitest/GUI Images/Num3Stationdef.png"/>
         </Property>
         <Property name="borderPainted" type="boolean" value="false"/>
         <Property name="contentAreaFilled" type="boolean" value="false"/>
@@ -186,7 +186,7 @@
     <Component class="javax.swing.JToggleButton" name="passenger_station_4">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/guitest/Num4Stationdef.png"/>
+          <Image iconType="3" name="/guitest/GUI Images/Num4Stationdef.png"/>
         </Property>
         <Property name="borderPainted" type="boolean" value="false"/>
         <Property name="contentAreaFilled" type="boolean" value="false"/>
@@ -203,7 +203,7 @@
     <Component class="javax.swing.JToggleButton" name="passenger_station_5">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/guitest/Num5Stationdef.png"/>
+          <Image iconType="3" name="/guitest/GUI Images/Num5Stationdef.png"/>
         </Property>
         <Property name="borderPainted" type="boolean" value="false"/>
         <Property name="contentAreaFilled" type="boolean" value="false"/>
@@ -220,7 +220,7 @@
     <Component class="javax.swing.JToggleButton" name="passenger_station_6">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/guitest/Num6Stationdef.png"/>
+          <Image iconType="3" name="/guitest/GUI Images/Num6Stationdef.png"/>
         </Property>
         <Property name="borderPainted" type="boolean" value="false"/>
         <Property name="contentAreaFilled" type="boolean" value="false"/>
@@ -237,7 +237,7 @@
     <Component class="javax.swing.JToggleButton" name="passenger_station_7">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/guitest/Num7Stationdef.png"/>
+          <Image iconType="3" name="/guitest/GUI Images/Num7Stationdef.png"/>
         </Property>
         <Property name="borderPainted" type="boolean" value="false"/>
         <Property name="contentAreaFilled" type="boolean" value="false"/>
@@ -254,7 +254,7 @@
     <Component class="javax.swing.JToggleButton" name="passenger_station_8">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/guitest/Num8Stationdef.png"/>
+          <Image iconType="3" name="/guitest/GUI Images/Num8Stationdef.png"/>
         </Property>
         <Property name="borderPainted" type="boolean" value="false"/>
         <Property name="contentAreaFilled" type="boolean" value="false"/>
@@ -271,7 +271,7 @@
     <Component class="javax.swing.JButton" name="AddPassengers">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/guitest/addpass3.png"/>
+          <Image iconType="3" name="/guitest/GUI Images/addpass3.png"/>
         </Property>
         <Property name="borderPainted" type="boolean" value="false"/>
         <Property name="contentAreaFilled" type="boolean" value="false"/>

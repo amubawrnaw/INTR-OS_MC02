@@ -69,7 +69,7 @@ public class GUIFrame extends javax.swing.JFrame {
 
         deployTrainButton.setBackground(new java.awt.Color(255, 255, 255));
         deployTrainButton.setFont(new java.awt.Font("BigNoodleTitling", 0, 36)); // NOI18N
-        deployTrainButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/guitest/deploydefault.png"))); // NOI18N
+        deployTrainButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/guitest/GUI Images/deploydefault.png"))); // NOI18N
         deployTrainButton.setBorder(null);
         deployTrainButton.setBorderPainted(false);
         deployTrainButton.setContentAreaFilled(false);
@@ -89,19 +89,19 @@ public class GUIFrame extends javax.swing.JFrame {
         getContentPane().add(trainCapacitySpinner);
         trainCapacitySpinner.setBounds(920, 460, 70, 50);
 
-        Station.setIcon(new javax.swing.ImageIcon(getClass().getResource("/guitest/capacity.png"))); // NOI18N
+        Station.setIcon(new javax.swing.ImageIcon(getClass().getResource("/guitest/GUI Images/capacity.png"))); // NOI18N
         getContentPane().add(Station);
         Station.setBounds(700, 460, 240, 60);
 
-        TrainCapacity.setIcon(new javax.swing.ImageIcon(getClass().getResource("/guitest/station.png"))); // NOI18N
+        TrainCapacity.setIcon(new javax.swing.ImageIcon(getClass().getResource("/guitest/GUI Images/station.png"))); // NOI18N
         getContentPane().add(TrainCapacity);
-        TrainCapacity.setBounds(60, 426, 210, 74);
+        TrainCapacity.setBounds(60, 426, 180, 74);
 
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1);
         jLabel1.setBounds(90, 170, 34, 14);
 
-        passenger_station_1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/guitest/Num1Stationdef.png"))); // NOI18N
+        passenger_station_1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/guitest/GUI Images/Num1Stationdef.png"))); // NOI18N
         passenger_station_1.setBorderPainted(false);
         passenger_station_1.setContentAreaFilled(false);
         passenger_station_1.setFocusPainted(false);
@@ -113,7 +113,7 @@ public class GUIFrame extends javax.swing.JFrame {
         getContentPane().add(passenger_station_1);
         passenger_station_1.setBounds(240, 420, 50, 80);
 
-        passenger_station_2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/guitest/Num2Stationdef.png"))); // NOI18N
+        passenger_station_2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/guitest/GUI Images/Num2Stationdef.png"))); // NOI18N
         passenger_station_2.setBorderPainted(false);
         passenger_station_2.setContentAreaFilled(false);
         passenger_station_2.setFocusPainted(false);
@@ -125,7 +125,7 @@ public class GUIFrame extends javax.swing.JFrame {
         getContentPane().add(passenger_station_2);
         passenger_station_2.setBounds(290, 420, 50, 80);
 
-        passenger_station_3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/guitest/Num3Stationdef.png"))); // NOI18N
+        passenger_station_3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/guitest/GUI Images/Num3Stationdef.png"))); // NOI18N
         passenger_station_3.setBorderPainted(false);
         passenger_station_3.setContentAreaFilled(false);
         passenger_station_3.setFocusPainted(false);
@@ -137,7 +137,7 @@ public class GUIFrame extends javax.swing.JFrame {
         getContentPane().add(passenger_station_3);
         passenger_station_3.setBounds(340, 420, 50, 80);
 
-        passenger_station_4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/guitest/Num4Stationdef.png"))); // NOI18N
+        passenger_station_4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/guitest/GUI Images/Num4Stationdef.png"))); // NOI18N
         passenger_station_4.setBorderPainted(false);
         passenger_station_4.setContentAreaFilled(false);
         passenger_station_4.addActionListener(new java.awt.event.ActionListener() {
@@ -148,7 +148,7 @@ public class GUIFrame extends javax.swing.JFrame {
         getContentPane().add(passenger_station_4);
         passenger_station_4.setBounds(390, 410, 50, 100);
 
-        passenger_station_5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/guitest/Num5Stationdef.png"))); // NOI18N
+        passenger_station_5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/guitest/GUI Images/Num5Stationdef.png"))); // NOI18N
         passenger_station_5.setBorderPainted(false);
         passenger_station_5.setContentAreaFilled(false);
         passenger_station_5.addActionListener(new java.awt.event.ActionListener() {
@@ -159,7 +159,7 @@ public class GUIFrame extends javax.swing.JFrame {
         getContentPane().add(passenger_station_5);
         passenger_station_5.setBounds(440, 420, 50, 80);
 
-        passenger_station_6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/guitest/Num6Stationdef.png"))); // NOI18N
+        passenger_station_6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/guitest/GUI Images/Num6Stationdef.png"))); // NOI18N
         passenger_station_6.setBorderPainted(false);
         passenger_station_6.setContentAreaFilled(false);
         passenger_station_6.addActionListener(new java.awt.event.ActionListener() {
@@ -170,7 +170,7 @@ public class GUIFrame extends javax.swing.JFrame {
         getContentPane().add(passenger_station_6);
         passenger_station_6.setBounds(490, 420, 50, 80);
 
-        passenger_station_7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/guitest/Num7Stationdef.png"))); // NOI18N
+        passenger_station_7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/guitest/GUI Images/Num7Stationdef.png"))); // NOI18N
         passenger_station_7.setBorderPainted(false);
         passenger_station_7.setContentAreaFilled(false);
         passenger_station_7.addActionListener(new java.awt.event.ActionListener() {
@@ -181,7 +181,7 @@ public class GUIFrame extends javax.swing.JFrame {
         getContentPane().add(passenger_station_7);
         passenger_station_7.setBounds(540, 420, 50, 80);
 
-        passenger_station_8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/guitest/Num8Stationdef.png"))); // NOI18N
+        passenger_station_8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/guitest/GUI Images/Num8Stationdef.png"))); // NOI18N
         passenger_station_8.setBorderPainted(false);
         passenger_station_8.setContentAreaFilled(false);
         passenger_station_8.addActionListener(new java.awt.event.ActionListener() {
@@ -192,7 +192,7 @@ public class GUIFrame extends javax.swing.JFrame {
         getContentPane().add(passenger_station_8);
         passenger_station_8.setBounds(590, 420, 50, 80);
 
-        AddPassengers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/guitest/addpass3.png"))); // NOI18N
+        AddPassengers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/guitest/GUI Images/addpass3.png"))); // NOI18N
         AddPassengers.setBorderPainted(false);
         AddPassengers.setContentAreaFilled(false);
         AddPassengers.addActionListener(new java.awt.event.ActionListener() {
@@ -213,6 +213,8 @@ public class GUIFrame extends javax.swing.JFrame {
     private void deployTrainButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deployTrainButtonActionPerformed
        int train_capacity = (Integer) trainCapacitySpinner.getValue();
        new Train(train_capacity, 1).start();
+       
+       
         
     }//GEN-LAST:event_deployTrainButtonActionPerformed
 
