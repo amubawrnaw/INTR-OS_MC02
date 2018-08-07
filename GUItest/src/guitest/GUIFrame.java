@@ -5,6 +5,9 @@
  */
 package guitest;
 import AppPackage.AnimationClass;
+import Locks.Model.Passenger;
+import Locks.Model.Train;
+import java.util.Random;
 /**
  *
  * @author N7
@@ -15,6 +18,9 @@ public class GUIFrame extends javax.swing.JFrame {
      * Creates new form GUIFrame
      */
     public GUIFrame() {
+        random_passenger_destination = new Random();
+        selected_station_for_passenger = 0;
+        Train.initStations();
         initComponents();
     }
 
@@ -28,9 +34,9 @@ public class GUIFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jTextField1 = new javax.swing.JTextField();
-        DeployTrain = new javax.swing.JButton();
+        deployTrainButton = new javax.swing.JButton();
         PassengerSpinner = new javax.swing.JSpinner();
-        CapacitySpinner = new javax.swing.JSpinner();
+        trainCapacitySpinner = new javax.swing.JSpinner();
         Station = new javax.swing.JLabel();
         TrainCapacity = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -61,27 +67,27 @@ public class GUIFrame extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(null);
 
-        DeployTrain.setBackground(new java.awt.Color(255, 255, 255));
-        DeployTrain.setFont(new java.awt.Font("BigNoodleTitling", 0, 36)); // NOI18N
-        DeployTrain.setIcon(new javax.swing.ImageIcon(getClass().getResource("/guitest/deploydefault.png"))); // NOI18N
-        DeployTrain.setBorder(null);
-        DeployTrain.setBorderPainted(false);
-        DeployTrain.setContentAreaFilled(false);
-        DeployTrain.addActionListener(new java.awt.event.ActionListener() {
+        deployTrainButton.setBackground(new java.awt.Color(255, 255, 255));
+        deployTrainButton.setFont(new java.awt.Font("BigNoodleTitling", 0, 36)); // NOI18N
+        deployTrainButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/guitest/deploydefault.png"))); // NOI18N
+        deployTrainButton.setBorder(null);
+        deployTrainButton.setBorderPainted(false);
+        deployTrainButton.setContentAreaFilled(false);
+        deployTrainButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DeployTrainActionPerformed(evt);
+                deployTrainButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(DeployTrain);
-        DeployTrain.setBounds(1010, 440, 210, 90);
+        getContentPane().add(deployTrainButton);
+        deployTrainButton.setBounds(1010, 440, 210, 90);
 
         PassengerSpinner.setFont(new java.awt.Font("BigNoodleTitling", 0, 24)); // NOI18N
         getContentPane().add(PassengerSpinner);
         PassengerSpinner.setBounds(510, 500, 70, 50);
 
-        CapacitySpinner.setFont(new java.awt.Font("BigNoodleTitling", 0, 24)); // NOI18N
-        getContentPane().add(CapacitySpinner);
-        CapacitySpinner.setBounds(920, 460, 70, 50);
+        trainCapacitySpinner.setFont(new java.awt.Font("BigNoodleTitling", 0, 24)); // NOI18N
+        getContentPane().add(trainCapacitySpinner);
+        trainCapacitySpinner.setBounds(920, 460, 70, 50);
 
         Station.setIcon(new javax.swing.ImageIcon(getClass().getResource("/guitest/capacity.png"))); // NOI18N
         getContentPane().add(Station);
@@ -203,25 +209,28 @@ public class GUIFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void DeployTrainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeployTrainActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_DeployTrainActionPerformed
+    private int selected_station_for_passenger;
+    private void deployTrainButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deployTrainButtonActionPerformed
+       int train_capacity = (Integer) trainCapacitySpinner.getValue();
+       System.out.println(train_capacity);
+       new Train(train_capacity, 1).start();
+        
+    }//GEN-LAST:event_deployTrainButtonActionPerformed
 
     private void passenger_station_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passenger_station_1ActionPerformed
-        // TODO add your handling code here:
+        selected_station_for_passenger = 0;
     }//GEN-LAST:event_passenger_station_1ActionPerformed
 
     private void passenger_station_4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passenger_station_4ActionPerformed
-        // TODO add your handling code here:
+        selected_station_for_passenger = 3;
     }//GEN-LAST:event_passenger_station_4ActionPerformed
 
     private void passenger_station_5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passenger_station_5ActionPerformed
-        // TODO add your handling code here:
+        selected_station_for_passenger = 4;
     }//GEN-LAST:event_passenger_station_5ActionPerformed
 
     private void passenger_station_8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passenger_station_8ActionPerformed
-        // TODO add your handling code here:
+        selected_station_for_passenger = 7;
     }//GEN-LAST:event_passenger_station_8ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -229,23 +238,30 @@ public class GUIFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void passenger_station_6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passenger_station_6ActionPerformed
-        // TODO add your handling code here:
+        selected_station_for_passenger = 5;
     }//GEN-LAST:event_passenger_station_6ActionPerformed
 
     private void passenger_station_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passenger_station_2ActionPerformed
-        // TODO add your handling code here:
+        selected_station_for_passenger = 1;
     }//GEN-LAST:event_passenger_station_2ActionPerformed
 
     private void passenger_station_3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passenger_station_3ActionPerformed
-        // TODO add your handling code here:
+        selected_station_for_passenger = 2;
     }//GEN-LAST:event_passenger_station_3ActionPerformed
 
     private void passenger_station_7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passenger_station_7ActionPerformed
-        // TODO add your handling code here:
+        selected_station_for_passenger = 6;
     }//GEN-LAST:event_passenger_station_7ActionPerformed
-
+    Random random_passenger_destination;
     private void AddPassengersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddPassengersActionPerformed
-        // TODO add your handling code here:
+        //creates a random int from 0-7
+        int end = random_passenger_destination.nextInt(8);
+        //loop if the random generated number is equal to the start station
+        while(end!=selected_station_for_passenger){
+            //creates a random int from 0-7
+            end = random_passenger_destination.nextInt(8);
+        }
+        new Passenger(end, Train.stations[selected_station_for_passenger]).start();
     }//GEN-LAST:event_AddPassengersActionPerformed
 
     /**
@@ -286,11 +302,10 @@ public class GUIFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddPassengers;
     private javax.swing.JLabel Background;
-    private javax.swing.JSpinner CapacitySpinner;
-    private javax.swing.JButton DeployTrain;
     private javax.swing.JSpinner PassengerSpinner;
     private javax.swing.JLabel Station;
     private javax.swing.JLabel TrainCapacity;
+    private javax.swing.JButton deployTrainButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JToggleButton passenger_station_1;
@@ -301,5 +316,6 @@ public class GUIFrame extends javax.swing.JFrame {
     private javax.swing.JToggleButton passenger_station_6;
     private javax.swing.JToggleButton passenger_station_7;
     private javax.swing.JToggleButton passenger_station_8;
+    private javax.swing.JSpinner trainCapacitySpinner;
     // End of variables declaration//GEN-END:variables
 }
