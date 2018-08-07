@@ -1,4 +1,4 @@
-package Model;
+package Locks.Model;
 
 import java.util.*;
 

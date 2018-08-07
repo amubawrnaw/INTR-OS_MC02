@@ -1,4 +1,4 @@
-package Model;
+package Locks.Model;
 
 public class Passenger extends Thread{
 
