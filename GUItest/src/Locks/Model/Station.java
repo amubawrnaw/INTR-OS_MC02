@@ -1,10 +1,11 @@
 package Locks.Model;
 import java.util.*;
+import javax.swing.JLabel;
 
 public class Station{
 	
 	public int passengers; 
-
+        public JLabel gui_count;
 	//trains[0] = train going left
 	//trains[1] = train going right
 	public Train train;
@@ -13,9 +14,11 @@ public class Station{
 	
 	public synchronized void addPassenger(){
 		passengers++;
+                gui_count.setText("x" + passengers);
 	}
 	public synchronized void removePassenger(){
 		passengers--;
+                gui_count.setText("x" + passengers);
 	}
 	public Station(){
 		train = null;

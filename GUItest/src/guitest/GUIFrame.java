@@ -20,10 +20,24 @@ public class GUIFrame extends javax.swing.JFrame {
     public GUIFrame() {
         random_passenger_destination = new Random();
         selected_station_for_passenger = 0;
-        Train.initStations();
+        
         initComponents();
+        customInit();
     }
-
+    private void customInit(){
+        Train.initStations();
+        //link the stations to the GUI passenger display
+        Train.stations[0].gui_count = station_1_PCount;
+        Train.stations[1].gui_count = station_2_PCount;
+        Train.stations[2].gui_count = station_3_PCount;
+        Train.stations[3].gui_count = station_4_PCount;
+        Train.stations[4].gui_count = station_5_PCount;
+        Train.stations[5].gui_count = station_6_PCount;
+        Train.stations[6].gui_count = station_7_PCount;
+        Train.stations[7].gui_count = station_8_PCount;
+        
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -39,7 +53,14 @@ public class GUIFrame extends javax.swing.JFrame {
         trainCapacitySpinner = new javax.swing.JSpinner();
         Station = new javax.swing.JLabel();
         TrainCapacity = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        station_1_PCount = new javax.swing.JLabel();
+        station_2_PCount = new javax.swing.JLabel();
+        station_3_PCount = new javax.swing.JLabel();
+        station_4_PCount = new javax.swing.JLabel();
+        station_5_PCount = new javax.swing.JLabel();
+        station_6_PCount = new javax.swing.JLabel();
+        station_7_PCount = new javax.swing.JLabel();
+        station_8_PCount = new javax.swing.JLabel();
         passenger_station_1 = new javax.swing.JToggleButton();
         passenger_station_2 = new javax.swing.JToggleButton();
         passenger_station_3 = new javax.swing.JToggleButton();
@@ -97,9 +118,53 @@ public class GUIFrame extends javax.swing.JFrame {
         getContentPane().add(TrainCapacity);
         TrainCapacity.setBounds(60, 426, 180, 74);
 
-        jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(90, 170, 34, 14);
+        station_1_PCount.setFont(new java.awt.Font("BigNoodleTitling", 0, 18)); // NOI18N
+        station_1_PCount.setForeground(new java.awt.Color(255, 255, 255));
+        station_1_PCount.setText("x0");
+        getContentPane().add(station_1_PCount);
+        station_1_PCount.setBounds(120, 80, 40, 30);
+
+        station_2_PCount.setFont(new java.awt.Font("BigNoodleTitling", 0, 18)); // NOI18N
+        station_2_PCount.setForeground(new java.awt.Color(255, 255, 255));
+        station_2_PCount.setText("x0");
+        getContentPane().add(station_2_PCount);
+        station_2_PCount.setBounds(470, 80, 40, 30);
+
+        station_3_PCount.setFont(new java.awt.Font("BigNoodleTitling", 0, 18)); // NOI18N
+        station_3_PCount.setForeground(new java.awt.Color(255, 255, 255));
+        station_3_PCount.setText("x0");
+        getContentPane().add(station_3_PCount);
+        station_3_PCount.setBounds(840, 80, 40, 30);
+
+        station_4_PCount.setFont(new java.awt.Font("BigNoodleTitling", 0, 18)); // NOI18N
+        station_4_PCount.setForeground(new java.awt.Color(255, 255, 255));
+        station_4_PCount.setText("x0");
+        getContentPane().add(station_4_PCount);
+        station_4_PCount.setBounds(1200, 80, 30, 30);
+
+        station_5_PCount.setFont(new java.awt.Font("BigNoodleTitling", 0, 18)); // NOI18N
+        station_5_PCount.setForeground(new java.awt.Color(255, 255, 255));
+        station_5_PCount.setText("x0");
+        getContentPane().add(station_5_PCount);
+        station_5_PCount.setBounds(130, 290, 40, 30);
+
+        station_6_PCount.setFont(new java.awt.Font("BigNoodleTitling", 0, 18)); // NOI18N
+        station_6_PCount.setForeground(new java.awt.Color(255, 255, 255));
+        station_6_PCount.setText("x0");
+        getContentPane().add(station_6_PCount);
+        station_6_PCount.setBounds(470, 290, 50, 30);
+
+        station_7_PCount.setFont(new java.awt.Font("BigNoodleTitling", 0, 18)); // NOI18N
+        station_7_PCount.setForeground(new java.awt.Color(255, 255, 255));
+        station_7_PCount.setText("x0");
+        getContentPane().add(station_7_PCount);
+        station_7_PCount.setBounds(840, 290, 40, 30);
+
+        station_8_PCount.setFont(new java.awt.Font("BigNoodleTitling", 0, 18)); // NOI18N
+        station_8_PCount.setForeground(new java.awt.Color(255, 255, 255));
+        station_8_PCount.setText("x0");
+        getContentPane().add(station_8_PCount);
+        station_8_PCount.setBounds(1200, 290, 40, 30);
 
         passenger_station_1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/guitest/GUI Images/Num1Stationdef.png"))); // NOI18N
         passenger_station_1.setBorderPainted(false);
@@ -203,7 +268,7 @@ public class GUIFrame extends javax.swing.JFrame {
         getContentPane().add(AddPassengers);
         AddPassengers.setBounds(260, 480, 257, 90);
 
-        Background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/guitest/FINALBG2.png"))); // NOI18N
+        Background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/guitest/GUI Images/FINALBG2.png"))); // NOI18N
         getContentPane().add(Background);
         Background.setBounds(0, 0, 1330, 560);
 
@@ -213,9 +278,6 @@ public class GUIFrame extends javax.swing.JFrame {
     private void deployTrainButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deployTrainButtonActionPerformed
        int train_capacity = (Integer) trainCapacitySpinner.getValue();
        new Train(train_capacity, 1).start();
-       
-       
-        
     }//GEN-LAST:event_deployTrainButtonActionPerformed
 
     private void passenger_station_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passenger_station_1ActionPerformed
@@ -315,7 +377,6 @@ public class GUIFrame extends javax.swing.JFrame {
     private javax.swing.JLabel Station;
     private javax.swing.JLabel TrainCapacity;
     private javax.swing.JButton deployTrainButton;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JToggleButton passenger_station_1;
     private javax.swing.JToggleButton passenger_station_2;
@@ -325,6 +386,14 @@ public class GUIFrame extends javax.swing.JFrame {
     private javax.swing.JToggleButton passenger_station_6;
     private javax.swing.JToggleButton passenger_station_7;
     private javax.swing.JToggleButton passenger_station_8;
+    private javax.swing.JLabel station_1_PCount;
+    private javax.swing.JLabel station_2_PCount;
+    private javax.swing.JLabel station_3_PCount;
+    private javax.swing.JLabel station_4_PCount;
+    private javax.swing.JLabel station_5_PCount;
+    private javax.swing.JLabel station_6_PCount;
+    private javax.swing.JLabel station_7_PCount;
+    private javax.swing.JLabel station_8_PCount;
     private javax.swing.JSpinner trainCapacitySpinner;
     // End of variables declaration//GEN-END:variables
 }
