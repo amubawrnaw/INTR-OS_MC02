@@ -4,10 +4,14 @@
  * and open the template in the editor.
  */
 package guitest;
+
 import AppPackage.AnimationClass;
+import AppPackage.AnimationClass.*;
 import Locks.Model.Passenger;
 import Locks.Model.Train;
+import java.util.HashMap;
 import java.util.Random;
+import javax.swing.JLabel;
 /**
  *
  * @author N7
@@ -24,6 +28,13 @@ public class GUIFrame extends javax.swing.JFrame {
         initComponents();
         customInit();
     }
+    
+    
+    JLabel[] trains;
+    AnimationClass[] animators;
+    int[] top_stations;
+    int[] bottom_stations;
+    HashMap<Integer, Integer> train_indexes;
     private void customInit(){
         Train.initStations();
         //link the stations to the GUI passenger display
@@ -35,9 +46,88 @@ public class GUIFrame extends javax.swing.JFrame {
         Train.stations[5].gui_count = station_6_PCount;
         Train.stations[6].gui_count = station_7_PCount;
         Train.stations[7].gui_count = station_8_PCount;
+        //X coordinates for Stations / Tracks for Stations 1-4
+        top_stations = new int[]{-120,50,220,400,590,770,960,1130,1300};
+        //X coordinates for Stations / Tracks for Stations 5-8
+        bottom_stations = new int[]{60,230,400,590,770,950,1130,1300};
+        //this will store the indexes of the trains in the station X coordinate array
         
         
     }
+    
+    public void putTrains(){
+        train_indexes = new HashMap<>();
+        
+        //instantiate the train list
+        trains = new JLabel[16];
+        //instantiate the animation class, 1 AC : 1 Train
+        animators = new AnimationClass[16];
+        
+        //instantiate stuff
+        for(int i = 0 ; i < 16 ; i++){
+            //initialize index of each train to 0
+            train_indexes.put(i,0);
+            
+            //create a train gui
+            JLabel temp = new JLabel();
+            temp.setFont(new java.awt.Font("BigNoodleTitling", 0, 18));
+            temp.setForeground(new java.awt.Color(255, 255, 255));
+            temp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/guitest/GUI Images/train_icon.png")));
+            temp.setText("x0");
+            temp.setAutoscrolls(true);
+            getContentPane().add(temp);
+            temp.setBounds(-120, 150, 190, 70);
+            //initially invisible
+            temp.setVisible(false);
+            
+            //add new train gui to list
+            trains[i] = temp;
+            animators[i] = new AnimationClass();
+        }
+    }
+    
+    public void setPassenger(int train_id, int pass_count){
+        trains[train_id].setText("x" + pass_count);
+    }
+    public void moveToNextStation(int train_id){
+        //check if train is at the rightmost edge of the GUI
+        if(train_indexes.get(train_id)==7){
+            //check if train is on Station 4
+            if(trains[train_id].getBounds().y == 150){
+                //move to station 5
+                trains[train_id].setBounds(-120, 360, 190,70);
+                animators[train_id].jLabelXRight(-120, 60, 10, 10, trains[train_id]);
+                train_indexes.put(train_id,0);
+            }else{
+                //move to station 1
+                trains[train_id].setBounds(-120, 150, 190,70);
+                train_indexes.put(train_id,0);
+            }
+        }else{
+            //move normally
+            if(trains[train_id].getBounds().y == 150){
+                animators[train_id].jLabelXRight(top_stations[train_indexes.get(train_id)],top_stations[train_indexes.get(train_id)+1] , 10, 10, trains[train_id]);
+                trains[train_id].setBounds(top_stations[train_indexes.get(train_id)], 150, 190,70);
+                train_indexes.put(train_id,train_indexes.get(train_id)+1);
+            }else{
+                animators[train_id].jLabelXRight(bottom_stations[train_indexes.get(train_id)],bottom_stations[train_indexes.get(train_id)+1] , 10, 10, trains[train_id]);
+                trains[train_id].setBounds(bottom_stations[train_indexes.get(train_id)], 360, 190,70);
+                train_indexes.put(train_id,train_indexes.get(train_id)+1);
+            }
+        }
+    }
+    
+    public void leaveSimulation(int train_id){
+        animators[train_id].jLabelXRight(1130, 1300, 10, 10, trains[train_id]);
+        train_indexes.put(train_id, 0);
+        trains[train_id].setVisible(false);
+        trains[train_id].setBounds(-120, 150, 190, 70);
+    }
+    
+    public void activateTrain(int train_id){
+        trains[train_id].setVisible(true);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -269,6 +359,7 @@ public class GUIFrame extends javax.swing.JFrame {
         AddPassengers.setBounds(260, 480, 257, 90);
 
         Background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/guitest/GUI Images/FINALBG2.png"))); // NOI18N
+        putTrains();
         getContentPane().add(Background);
         Background.setBounds(0, 0, 1330, 560);
 
@@ -277,7 +368,10 @@ public class GUIFrame extends javax.swing.JFrame {
     private int selected_station_for_passenger;
     private void deployTrainButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deployTrainButtonActionPerformed
        int train_capacity = (Integer) trainCapacitySpinner.getValue();
-       new Train(train_capacity, 1).start();
+       
+       new Train(train_capacity, 1, this).start();
+       
+       
     }//GEN-LAST:event_deployTrainButtonActionPerformed
 
     private void passenger_station_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passenger_station_1ActionPerformed
@@ -322,7 +416,8 @@ public class GUIFrame extends javax.swing.JFrame {
         int cnt = (Integer )PassengerSpinner.getValue();
         if(cnt>0){
             for(int i = 0 ; i < cnt ; i++){
-                while(end!=selected_station_for_passenger){
+                end = random_passenger_destination.nextInt(8);
+                while(end==selected_station_for_passenger){
                     //creates a random int from 0-7
                     end = random_passenger_destination.nextInt(8);
                 }

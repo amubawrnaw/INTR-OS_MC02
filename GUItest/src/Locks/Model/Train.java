@@ -1,11 +1,14 @@
 package Locks.Model;
 
+import guitest.GUIFrame;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Train extends Thread{
 	public int max_seat_count;
 	private int occupied_seats;
-
+        public GUIFrame gf;
 	public Object passenger_lock;
 	public Object train_full;
 	public Object new_train;
@@ -23,7 +26,8 @@ public class Train extends Thread{
 	public volatile boolean running;
 	public boolean valid;
 
-	public Train(int seat_count, int direction){
+	public Train(int seat_count, int direction, GUIFrame gf){
+                this.gf = gf;
 		max_seat_count = seat_count;
 		this.direction = direction;
 		current_station = 0;
@@ -46,10 +50,11 @@ public class Train extends Thread{
 	@Override
 	public void run(){
 		if(valid){
+                        gf.activateTrain(id);
 			long start = System.currentTimeMillis();
 			while(running){
 				try{
-					//sleep(300);
+					sleep(300);
 				}catch(Exception e){
 					e.printStackTrace();
 				}
@@ -57,6 +62,13 @@ public class Train extends Thread{
 				boolean has_entered = false;
 				while(stations[current_station].isOccupied()){
 					synchronized (stations[current_station].train_lock){
+                                                boolean alreadyCalled = false;
+                                                if(!alreadyCalled){
+                                                    alreadyCalled = true;
+                                                    gf.moveToNextStation(id);
+                                                    System.out.println("enter");
+                                                }
+                                            
 						System.out.println("Train " + id + " is waiting for Station " + current_station + " to open.");
 						try{
 							stations[current_station].train_lock.wait();
@@ -75,6 +87,7 @@ public class Train extends Thread{
 				if(!has_entered){
 					stations[current_station].station_load_train(this);
 				}
+                                gf.moveToNextStation(id);
 				//notify passengers train has arrived, passengers can now leave.
 				synchronized(passenger_lock){
 					passenger_lock.notifyAll();
@@ -100,10 +113,11 @@ public class Train extends Thread{
 				//move to next station, loops from 0-7
 				int temp = current_station;
 				stations[current_station].station_leave_train();
+                                gf.moveToNextStation(id);
 				if(Passenger.actual_passenger_count == 0 && current_station == 7){
 					running = false;
 					System.out.println("Train " + id + " has left the Simulator");
-					
+					gf.leaveSimulation(id);
 					break;
 				}
 				current_station = (current_station+1)%8;
@@ -126,8 +140,14 @@ public class Train extends Thread{
 	}
 
 	public synchronized boolean board(Passenger p){
+            try {
+                sleep(100);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
 		if(!isFull()){
 			occupied_seats++;
+                        gf.setPassenger(id, occupied_seats);
 			System.out.println("Passenger " + p.pass_id + " has boarded train " + id);
 			return true;
 		}
@@ -138,7 +158,13 @@ public class Train extends Thread{
 		return (max_seat_count == occupied_seats);
 	}
 	public synchronized void leave(){
+                try {
+                    sleep(100);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
 		occupied_seats--;
+                gf.setPassenger(id, occupied_seats);
 	}
 
 	public static void initStations(){

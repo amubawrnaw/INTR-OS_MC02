@@ -1,3 +1,5 @@
+package Locks;
+
 import java.util.*;
 import Locks.Model.*;
 public class Driver{
@@ -16,7 +18,7 @@ public class Driver{
 				System.out.print("How many trains: ");
 				int tcount = sc.nextInt();
 				while(tcount-->0){
-					new Train(cap,1).start();
+					//new Train(cap,1).start();
 					try{
 						Thread.sleep(100);
 					}catch(Exception e){
