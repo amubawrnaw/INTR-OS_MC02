@@ -11,6 +11,8 @@ import Locks.Model.Passenger;
 import Locks.Model.Train;
 import java.util.HashMap;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JLabel;
 /**
  *
@@ -35,6 +37,8 @@ public class GUIFrame extends javax.swing.JFrame {
     int[] top_stations;
     int[] bottom_stations;
     HashMap<Integer, Integer> train_indexes;
+    
+    
     private void customInit(){
         Train.initStations();
         //link the stations to the GUI passenger display
@@ -49,10 +53,11 @@ public class GUIFrame extends javax.swing.JFrame {
         //X coordinates for Stations / Tracks for Stations 1-4
         top_stations = new int[]{-120,50,220,400,590,770,960,1130,1300};
         //X coordinates for Stations / Tracks for Stations 5-8
-        bottom_stations = new int[]{60,230,400,590,770,950,1130,1300};
+        bottom_stations = new int[]{-120,60,230,400,590,770,950,1130,1300};
         //this will store the indexes of the trains in the station X coordinate array
         
-        
+        PassengerSpinner.setValue(1);
+        trainCapacitySpinner.setValue(1);
     }
     
     public void putTrains(){
@@ -91,26 +96,26 @@ public class GUIFrame extends javax.swing.JFrame {
     }
     public void moveToNextStation(int train_id){
         //check if train is at the rightmost edge of the GUI
-        if(train_indexes.get(train_id)==7){
+        if(train_indexes.get(train_id)==8){
             //check if train is on Station 4
             if(trains[train_id].getBounds().y == 150){
                 //move to station 5
                 trains[train_id].setBounds(-120, 360, 190,70);
-                animators[train_id].jLabelXRight(-120, 60, 10, 10, trains[train_id]);
-                train_indexes.put(train_id,0);
+                animators[train_id].jLabelXRight(-120, 60, 20, 20, trains[train_id]);
             }else{
                 //move to station 1
                 trains[train_id].setBounds(-120, 150, 190,70);
-                train_indexes.put(train_id,0);
+                animators[train_id].jLabelXRight(-120, 50, 20, 20, trains[train_id]);
             }
+            train_indexes.put(train_id,1);
         }else{
             //move normally
             if(trains[train_id].getBounds().y == 150){
-                animators[train_id].jLabelXRight(top_stations[train_indexes.get(train_id)],top_stations[train_indexes.get(train_id)+1] , 10, 10, trains[train_id]);
+                animators[train_id].jLabelXRight(top_stations[train_indexes.get(train_id)],top_stations[train_indexes.get(train_id)+1] , 20, 20, trains[train_id]);
                 trains[train_id].setBounds(top_stations[train_indexes.get(train_id)], 150, 190,70);
                 train_indexes.put(train_id,train_indexes.get(train_id)+1);
             }else{
-                animators[train_id].jLabelXRight(bottom_stations[train_indexes.get(train_id)],bottom_stations[train_indexes.get(train_id)+1] , 10, 10, trains[train_id]);
+                animators[train_id].jLabelXRight(bottom_stations[train_indexes.get(train_id)],bottom_stations[train_indexes.get(train_id)+1] , 20, 20, trains[train_id]);
                 trains[train_id].setBounds(bottom_stations[train_indexes.get(train_id)], 360, 190,70);
                 train_indexes.put(train_id,train_indexes.get(train_id)+1);
             }
@@ -118,7 +123,7 @@ public class GUIFrame extends javax.swing.JFrame {
     }
     
     public void leaveSimulation(int train_id){
-        animators[train_id].jLabelXRight(1130, 1300, 10, 10, trains[train_id]);
+        animators[train_id].jLabelXRight(1130, 1300, 20, 20, trains[train_id]);
         train_indexes.put(train_id, 0);
         trains[train_id].setVisible(false);
         trains[train_id].setBounds(-120, 150, 190, 70);
@@ -368,9 +373,16 @@ public class GUIFrame extends javax.swing.JFrame {
     private int selected_station_for_passenger;
     private void deployTrainButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deployTrainButtonActionPerformed
        int train_capacity = (Integer) trainCapacitySpinner.getValue();
-       
-       new Train(train_capacity, 1, this).start();
-       
+       if(train_capacity>0){
+            new Train(train_capacity, 1, this).start();
+            try {
+                Thread.sleep(100);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+       }else{
+           System.out.println("invalid train capacity!");
+       }
        
     }//GEN-LAST:event_deployTrainButtonActionPerformed
 
@@ -420,6 +432,11 @@ public class GUIFrame extends javax.swing.JFrame {
                 while(end==selected_station_for_passenger){
                     //creates a random int from 0-7
                     end = random_passenger_destination.nextInt(8);
+                }
+                try {
+                    Thread.sleep(50);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
                 }
                 new Passenger(end, Train.stations[selected_station_for_passenger]).start();
             }

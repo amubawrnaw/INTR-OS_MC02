@@ -53,22 +53,9 @@ public class Train extends Thread{
                         gf.activateTrain(id);
 			long start = System.currentTimeMillis();
 			while(running){
-				try{
-					sleep(300);
-				}catch(Exception e){
-					e.printStackTrace();
-				}
-				
 				boolean has_entered = false;
 				while(stations[current_station].isOccupied()){
 					synchronized (stations[current_station].train_lock){
-                                                boolean alreadyCalled = false;
-                                                if(!alreadyCalled){
-                                                    alreadyCalled = true;
-                                                    gf.moveToNextStation(id);
-                                                    System.out.println("enter");
-                                                }
-                                            
 						System.out.println("Train " + id + " is waiting for Station " + current_station + " to open.");
 						try{
 							stations[current_station].train_lock.wait();
@@ -82,24 +69,35 @@ public class Train extends Thread{
 						break;
 					}
 				}
-
+                                try{
+					sleep(500);
+				}catch(Exception e){
+					e.printStackTrace();
+				}
 				//load train if not loaded awhile ago
 				if(!has_entered){
 					stations[current_station].station_load_train(this);
 				}
                                 gf.moveToNextStation(id);
+                                System.out.println("Train " + id + " is now on station " + current_station + ", passengers: " + occupied_seats);
+                                try {
+                                    sleep(300);
+                                } catch (Exception ex) {
+                                    ex.printStackTrace();
+                                }
+                                
 				//notify passengers train has arrived, passengers can now leave.
 				synchronized(passenger_lock){
 					passenger_lock.notifyAll();
 				}
-				
+                                
 				try{
 					sleep(1000);
 				}catch(Exception e){
 					e.printStackTrace();
 				}
 
-				System.out.println("Train " + id + " is now on station " + current_station + ", passengers: " + occupied_seats);
+				
 				//check if train is full
 				if(!isFull()){
 					//notify that people can board.
@@ -147,8 +145,8 @@ public class Train extends Thread{
             }
 		if(!isFull()){
 			occupied_seats++;
+                        System.out.println("Passenger " + p.pass_id + " has boarded train " + id);
                         gf.setPassenger(id, occupied_seats);
-			System.out.println("Passenger " + p.pass_id + " has boarded train " + id);
 			return true;
 		}
 		//System.out.println("Passenger " + p.pass_id + " failed to board train " + id);
