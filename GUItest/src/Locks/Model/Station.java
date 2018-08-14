@@ -51,9 +51,9 @@ public class Station{
 		
 		synchronized(train_boardable){
 			if(train == null){
-				train = t;
-				train_boardable.notifyAll();
-				return true;
+                            train = t;
+                            train_boardable.notifyAll();
+                            return true;
 			}
 			return false;
 		}

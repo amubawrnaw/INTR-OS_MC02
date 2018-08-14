@@ -7,7 +7,7 @@ import java.util.logging.Logger;
 
 public class Train extends Thread{
 	public int max_seat_count;
-	private int occupied_seats;
+	public int occupied_seats;
         public GUIFrame gf;
 	public Object passenger_lock;
 	public Object train_full;
