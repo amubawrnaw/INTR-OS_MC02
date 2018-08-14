@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package guitest;
+package gui_semaphores;
 
 import AppPackage.AnimationClass;
 import AppPackage.AnimationClass.*;
@@ -374,7 +374,7 @@ public class GUIFrame extends javax.swing.JFrame {
     private void deployTrainButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deployTrainButtonActionPerformed
        int train_capacity = (Integer) trainCapacitySpinner.getValue();
        if(train_capacity>0){
-            new Train(train_capacity, 1, this).start();
+            //new Train(train_capacity, 1, this).start();
             try {
                 Thread.sleep(100);
             } catch (Exception ex) {

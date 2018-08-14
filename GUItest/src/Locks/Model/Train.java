@@ -1,6 +1,6 @@
 package Locks.Model;
 
-import guitest.GUIFrame;
+import gui_locks.GUIFrame;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -80,11 +80,7 @@ public class Train extends Thread{
 				}
                                 gf.moveToNextStation(id);
                                 System.out.println("Train " + id + " is now on station " + current_station + ", passengers: " + occupied_seats);
-                                try {
-                                    sleep(300);
-                                } catch (Exception ex) {
-                                    ex.printStackTrace();
-                                }
+                                
                                 
 				//notify passengers train has arrived, passengers can now leave.
 				synchronized(passenger_lock){
@@ -92,7 +88,7 @@ public class Train extends Thread{
 				}
                                 
 				try{
-					sleep(1000);
+                                        sleep(500);
 				}catch(Exception e){
 					e.printStackTrace();
 				}
@@ -106,13 +102,11 @@ public class Train extends Thread{
 					}
 				}
 
-
-
 				//move to next station, loops from 0-7
 				int temp = current_station;
 				stations[current_station].station_leave_train();
                                 gf.moveToNextStation(id);
-				if(Passenger.actual_passenger_count == 0 && current_station == 7){
+				if(Passenger.actual_passenger_count == 0 && current_station == 7 && occupied_seats == 0){
 					running = false;
 					System.out.println("Train " + id + " has left the Simulator");
 					gf.leaveSimulation(id);
@@ -123,10 +117,10 @@ public class Train extends Thread{
 				
 				//release the lock on the unboarded passengers if theres any.
 				if(isFull() && stations[temp].hasPassengers()){
-					//System.out.println("release");
-					synchronized(stations[temp].train_boardable){
-						stations[temp].train_boardable.notifyAll();
-					}
+                                    //System.out.println("release");
+                                    synchronized(stations[temp].train_boardable){
+                                            stations[temp].train_boardable.notifyAll();
+                                    }
 				}
 			}
 			//remove train
@@ -145,7 +139,7 @@ public class Train extends Thread{
             }
 		if(!isFull()){
 			occupied_seats++;
-                        System.out.println("Passenger " + p.pass_id + " has boarded train " + id);
+                        System.out.println("Passenger " + p.pass_id + " has boarded train " + id + " destination : " + p.destination_station);
                         gf.setPassenger(id, occupied_seats);
 			return true;
 		}

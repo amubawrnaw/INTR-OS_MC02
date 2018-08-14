@@ -84,7 +84,6 @@ public class Passenger extends Thread{
 		station.removePassenger();
 		actual_passenger_count--;
 		//System.out.println("Passenger " + pass_id + " has boarded.");
-
 		train_check_for_destination(t);
 	}
 }

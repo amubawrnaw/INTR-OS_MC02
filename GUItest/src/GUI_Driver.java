@@ -1,4 +1,4 @@
-import guitest.*;
+import gui_locks.*;
 
 
 public class GUI_Driver {

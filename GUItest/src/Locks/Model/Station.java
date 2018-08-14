@@ -1,5 +1,8 @@
 package Locks.Model;
+import gui_locks.GUIFrame;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JLabel;
 
 public class Station{
@@ -12,19 +15,28 @@ public class Station{
 	public Object train_lock;
 	public Object train_boardable;
 	
-	public synchronized void addPassenger(){
-		passengers++;
+        public Object add_lock;
+        public Object rem_lock;
+        
+	public void addPassenger(){
+            synchronized(add_lock){
+                passengers++;
                 gui_count.setText("x" + passengers);
+            }
 	}
-	public synchronized void removePassenger(){
-		passengers--;
+	public void removePassenger(){
+            synchronized(rem_lock){
+                passengers--;
                 gui_count.setText("x" + passengers);
+            }
 	}
 	public Station(){
 		train = null;
 		passengers = 0;
 		train_lock = new Object();
 		train_boardable = new Object();
+                add_lock = new Object();
+                rem_lock = new Object();
 	}
 
 	public boolean hasPassengers(){

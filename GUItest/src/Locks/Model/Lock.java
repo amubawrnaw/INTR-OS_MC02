@@ -23,7 +23,7 @@ public class Lock{
 	}
 
 	public static void cond_init(Lock l){
-
+		
 	}
 
 	public static void cond_wait(Lock l){
